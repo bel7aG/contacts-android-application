@@ -28,6 +28,19 @@ public class MainActivity extends AppCompatActivity {
 
         dbContact = new DbContact(this);
 
+
+        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, UpdateContact.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         ArrayList<Contact> contacts = dbContact.getAllContacts();
 
 
@@ -46,17 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(MainActivity.this, UpdateContact.class);
-                startActivity(intent);
-            }
-        });
-
-
-
     }
 }
+
