@@ -101,6 +101,19 @@ public class DbContact extends SQLiteOpenHelper {
         return contact;
     }
 
+    public boolean updateContact (Contact contact) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_NAME, contact.getName());
+        contentValues.put(KEY_PHONE, contact.getPhone());
+        db.update(TABLE_NAME, contentValues, KEY_ID + " = ? ", new String[] { Integer.toString(contact.getId()) } );
+        return true;
+    }
 
-    
+    public Integer deleteContact (Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME,
+                KEY_ID + " = ? ",
+                new String[] { Integer.toString(id) });
+    }
 }
