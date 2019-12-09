@@ -2,10 +2,12 @@ package com.example.contacts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddContact extends AppCompatActivity {
     EditText editName, editPhone;
@@ -30,11 +32,16 @@ public class AddContact extends AppCompatActivity {
 
 
                 String name = editName.getText().toString();
-                int phone = Integer.parseInt(editPhone.getText().toString());
-
-                Contact contact = new Contact(name, phone);
-
-                dbContact.addContact(contact);
+                try {
+                    int phone = Integer.parseInt(editPhone.getText().toString());
+                    Contact contact = new Contact(name, phone);
+                    dbContact.addContact(contact);
+                    Toast.makeText(AddContact.this, "contact added", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddContact.this, MainActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(AddContact.this, "phone must be a number", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

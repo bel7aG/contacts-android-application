@@ -42,8 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
         contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                Contact selectedContact = (Contact) adapterView.getItemAtPosition(position);
+
                 Intent intent = new Intent(MainActivity.this, UpdateContact.class);
+
+                intent.putExtra("id", selectedContact.getId());
+
+
+
                 startActivity(intent);
             }
         });
@@ -58,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         ContactAdapter contactAdapter = new ContactAdapter(this, R.layout.item_contact, contacts);
 
         contactList.setAdapter(contactAdapter);
+
 
 
     }
