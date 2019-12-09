@@ -27,7 +27,7 @@ public class DbContact extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_table = "create table " + TABLE_NAME + "(" + KEY_ID + " integer primary key, " + KEY_NAME + " varchar(30), integer " + KEY_PHONE + ")";
+        String create_table = "create table " + TABLE_NAME + "(" + KEY_ID + " integer primary key, " + KEY_NAME + " varchar(30), "+  KEY_PHONE  +" integer )";
 
         db.execSQL(create_table);
     }

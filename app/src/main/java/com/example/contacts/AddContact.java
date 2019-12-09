@@ -20,14 +20,14 @@ public class AddContact extends AppCompatActivity {
 
         dbContact = new DbContact(this);
 
-
+        addButton = (Button) findViewById(R.id.addContact);
+        editName = (EditText) findViewById(R.id.addName);
+        editPhone = (EditText) findViewById(R.id.addPhone);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                editName = (EditText) findViewById(R.id.editName);
-                editPhone = (EditText) findViewById(R.id.editPhone);
 
                 String name = editName.getText().toString();
                 int phone = Integer.parseInt(editPhone.getText().toString());

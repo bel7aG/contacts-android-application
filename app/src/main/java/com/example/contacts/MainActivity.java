@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button addButton;
 
+    DbContact dbContact;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,34 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         contactList = findViewById(R.id.contactList);
 
-        ArrayList<Contact> contacts = new ArrayList<>();
+        dbContact = new DbContact(this);
 
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("okokokok", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("okokokok", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
-        contacts.add(new Contact("Belhassen", 53882475));
-        contacts.add(new Contact("Khaled", 98224256));
+        ArrayList<Contact> contacts = dbContact.getAllContacts();
+
 
         ContactAdapter contactAdapter = new ContactAdapter(this, R.layout.item_contact, contacts);
 
