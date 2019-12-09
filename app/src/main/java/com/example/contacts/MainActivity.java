@@ -29,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
         dbContact = new DbContact(this);
 
 
+        addButton = (Button) findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddContact.class);
+
+                startActivity(intent);
+            }
+        });
+
         contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -49,16 +60,6 @@ public class MainActivity extends AppCompatActivity {
         contactList.setAdapter(contactAdapter);
 
 
-        addButton = (Button) findViewById(R.id.addButton);
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddContact.class);
-
-                startActivity(intent);
-            }
-        });
     }
 }
 
