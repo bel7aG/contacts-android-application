@@ -1,10 +1,14 @@
 package com.example.contacts;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class DbContact extends SQLiteOpenHelper {
 
@@ -34,5 +38,46 @@ public class DbContact extends SQLiteOpenHelper {
         db.execSQL(delete_query);
 
         onCreate(db);
+    }
+
+    public void addContact(Contact contact) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, contact.getName());
+        values.put(KEY_PHONE, contact.getPhone());
+
+        db.insert(TABLE_NAME, null, values);
+    }
+
+    public ArrayList<Contact> getAllContacts() {
+        ArrayList<Contact> contacts = new ArrayList<>();
+
+        String select_query = "select * from "+ TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(select_query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                //String name = cursor.getString(1);
+
+                // OR
+
+                String name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
+                int phone = cursor.getInt(cursor.getColumnIndex(KEY_PHONE));
+
+                Contact contact = new Contact(name, phone);
+
+                contacts.add(contact);
+
+            } while (cursor.moveToNext());
+        }
+
+
+
+        return contacts;
     }
 }
